@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: #ffffff;
+            color: brown;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: #fff8f7;
+            padding: 20px 40px;
+            border-bottom: 1px solid #ead8d0;
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: brown;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #f4a460;
+        }
+
+        .cert-section {
+            max-width: 1050px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: brown;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        /* 3 Equal Cards per row */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .cert-card {
+            background: #ffffff;
+            border: 2px solid #d8b4a0;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.16);
+        }
+
+        .cert-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #fff8f7;
+            border-bottom: 1px solid #ead8d0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-img-container img,
+        .cert-img-container embed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.4s;
+        }
+
+        .cert-card:hover .cert-img-container img {
+            transform: scale(1.04);
+        }
+
+        .cert-details {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cert-title {
+            margin: 0 0 8px;
+            font-size: 18px;
+            color: brown;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .cert-issuer {
+            color: #ce4222;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .cert-desc {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            text-align: center;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            background: #ce4222;
+            border: 1px solid #ce4222;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #f4a460;
+            border-color: #f4a460;
+            color: black;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding: 25px;
+            text-align: center;
+            background: #fff8f7;
+            color: #777;
+            font-size: 13px;
+            border-top: 1px solid #ead8d0;
+        }
+
+        footer span {
+            color: brown;
+            font-weight: bold;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .navbar ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar a {
+                font-size: 14px;
+            }
+
+            .cert-section {
+                width: 95%;
+                margin: 40px auto;
+                padding: 10px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="certifications.html" class="active">Certifications</a></li>
+            <li><a href="contactme.html">Contact me</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="cert-section">
+            <div class="section-title">CERTIFICATIONS</div>
+            <div class="section-subtitle">Verified credentials, courses, and internship achievements</div>
+
+            <div class="cert-grid">
+
+                
+
+                <!-- 3. Python Unstop -->
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="images/python [unstop].png" alt="PYTHON Certificate">
+                    </div>
+                    <div class="cert-details">
+                        <div>
+                            <div class="cert-title">PYTHON</div>
+                            <div class="cert-issuer">provided by Unstop</div>
+                            <div class="cert-desc">Successfully completed.</div>
+                        </div>
+                        <a href="python basics.pdf" target="_blank" class="view-btn">View Certificate ↗</a>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="images/html[unstop].png" alt="HTML Certificate">
+                    </div>
+                    <div class="cert-details">
+                        <div>
+                            <div class="cert-title">HTML</div>
+                            <div class="cert-issuer">provided by Unstop</div>
+                            <div class="cert-desc">Successfully completed.</div>
+                        </div>
+                        <a href="HTML  With AI.pdf" target="_blank" class="view-btn">View Certificate ↗</a>
+                    </div>
+                </div>
+
+
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="images/css[unstop].png" alt="CSS Certificate">
+                    </div>
+                    <div class="cert-details">
+                        <div>
+                            <div class="cert-title">CSS</div>
+                            <div class="cert-issuer">provided by Unstop</div>
+                            <div class="cert-desc">Successfully completed.</div>
+                        </div>
+                        <a href="css with AI.pdf" target="_blank" class="view-btn">View Certificate ↗</a>
+                    </div>
+                </div>
+
+
+                
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Designed & Built by <span>Mytheeswaran S</span></p>
+    </footer>
+
+</body>
+</html>

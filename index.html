@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    
+    <!-- Font Awesome 6 CDN (Guaranteed Icon Load) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: #ffffff;
+            color: brown;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: #fff8f7;
+            padding: 20px 40px;
+            border-bottom: 1px solid #ead8d0;
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: brown;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f4a460;
+        }
+
+        .home {
+            min-height: calc(100vh - 75px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding: 60px 30px;
+        }
+
+        .image {
+            width: 325px;
+            height: 325px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid brown;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+            transition: 0.4s;
+        }
+
+        .image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 600px;
+        }
+
+        .content h1 {
+            margin: 0;
+            font-size: 34px;
+            color: brown;
+            line-height: 1.4;
+        }
+
+        .content h1 span {
+            color: #6b4b3a;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+        }
+
+        .role {
+            font-size: 18px;
+            margin: 12px 0;
+            color: brown;
+            line-height: 1.7;
+        }
+
+        .role span {
+            color: #6b4b3a;
+        }
+
+        .typewriter {
+            display: inline-block;
+            border-right: 2px solid brown;
+            padding-right: 5px;
+            font-weight: 700;
+            color: #6b4b3a;
+            min-width: 5px;
+        }
+
+        .chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .chip {
+            background: #fff8f7;
+            color: #6b4b3a;
+            border: 1px solid brown;
+            font-size: 13px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            transition: 0.3s;
+        }
+
+        .chip:hover {
+            color: white;
+            background-color: brown;
+            transform: translateY(-2px);
+        }
+
+        .resume-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .resume-btn {
+            display: inline-block;
+            padding: 11px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .view-resume {
+            color: white;
+            background: brown;
+            border: 2px solid brown;
+        }
+
+        .view-resume:hover {
+            background: #6b4b3a;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .download-cv {
+            color: brown;
+            background: white;
+            border: 2px solid brown;
+        }
+
+        .download-cv:hover {
+            color: white;
+            background: #f4a460;
+            border-color: #f4a460;
+            transform: translateY(-3px);
+        }
+
+        .icons {
+            margin-top: 28px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .icons a {
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid brown;
+            border-radius: 50%;
+            color: brown;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 18px;
+            background: transparent;
+        }
+
+        .icons a:hover {
+            background: #ce4222;
+            border-color: #ce4222;
+            color: #ffffff;
+            transform: translateY(-4px);
+        }
+
+        footer {
+            padding: 25px 20px;
+            text-align: center;
+            background: #fff8f7;
+            border-top: 1px solid #d8b4a0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer span {
+            color: brown;
+            font-weight: bold;
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .navbar ul {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar a {
+                font-size: 15px;
+            }
+
+            .home {
+                flex-direction: column;
+                text-align: center;
+                gap: 35px;
+                padding: 50px 20px;
+            }
+
+            .content {
+                align-items: center;
+                max-width: 100%;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .role {
+                font-size: 16px;
+            }
+
+            .chips {
+                justify-content: center;
+            }
+
+            .resume-buttons {
+                justify-content: center;
+            }
+
+            .icons {
+                justify-content: center;
+            }
+
+            .image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .navbar ul {
+                gap: 12px;
+            }
+
+            .navbar a {
+                font-size: 13px;
+            }
+
+            .image {
+                width: 210px;
+                height: 210px;
+            }
+
+            .content h1 {
+                font-size: 24px;
+            }
+
+            .role {
+                font-size: 14px;
+            }
+
+            .resume-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .resume-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contactme.html">Contact me</a></li>
+        </ul>
+    </nav>
+
+    <section class="home">
+        <div>
+            <img src="my image.jpeg" alt="Biruntha R" class="image">
+        </div>
+
+        <div class="content">
+            <h1>
+                Hi, I'm <span>Biruntha R</span>
+            </h1>
+
+            <div class="role">
+                <span class="typewriter" id="typewriter"></span>
+                &nbsp; | &nbsp; B.Tech - IT &nbsp; | &nbsp; AI Powered Full Stack Developer
+            </div>
+
+            <div class="chips">
+                <span class="chip">Python</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+                <span class="chip">JAVA SCRIPT</span>
+            </div>
+
+            <div class="resume-buttons">
+                <a href="Biruntha R resume (nov) .pdf" target="_blank" class="resume-btn view-resume">
+                    👁 View CV
+                </a>
+                <a href="certifications.html" class="resume-btn download-cv">
+                    📜 Certifications
+                </a>
+            </div>
+
+            <div class="icons">
+                <a href="https://github.com/birunthar007" target="_blank" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/biruntha-r/" target="_blank" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:birunthar007@gmail.com" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:+919361812305" aria-label="Phone">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            Designed & Built by <span>Biruntha R</span>
+        </p>
+    </footer>
+
+    <script>
+        const roles = ["Web Developer"];
+        let i = 0, j = 0, cur = "", el = document.getElementById("typewriter");
+        const speed = 85, pause = 1200;
+
+        function erase() {
+            if (j > 0) {
+                cur = roles[i].substring(0, j - 1);
+                j--;
+                el.textContent = cur;
+                setTimeout(erase, 45);
+            } else {
+                i = (i + 1) % roles.length;
+                setTimeout(type, 300);
+            }
+        }
+
+        function type() {
+            if (j < roles[i].length) {
+                cur += roles[i][j++];
+                el.textContent = cur;
+                return setTimeout(type, speed);
+            }
+            setTimeout(erase, pause);
+        }
+
+        type();
+    </script>
+</body>
+</html>

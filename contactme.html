@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+      * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: #ffffff;
+            color: brown;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: #fff8f7;
+            padding: 20px 40px;
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: brown;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            color: #f4a460;
+        }
+   
+        .contact-section {
+            max-width: 900px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: brown;
+        }
+
+        .contact-grid {
+            display: grid;
+
+            /* 2 boxes per row */
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+        .contact-box {
+            min-height: 150px;
+
+            background: #ffffff;
+
+            border: 2px solid #d8b4a0;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+            transition: 0.3s;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .contact-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            min-width: 0;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 23px;
+
+            background: linear-gradient(
+                180deg,
+                #eb5f1e4d,
+                #ce4222ee
+            );
+
+            border: 1px solid #65060155;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-name {
+            font-size: 19px;
+            font-weight: bold;
+            color: brown;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #777;
+
+            word-break: break-word;
+        }
+        .contact-link {
+            flex-shrink: 0;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            color: #ce4222;
+
+            border: 1px solid #b3420555;
+
+            padding: 9px 15px;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                180deg,
+                #f77b559a,
+                #ce2d222a
+            );
+
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: #f4a460;
+            color: blue;
+        }
+        @media (max-width: 680px) {
+
+            .navbar {
+                padding: 20px;
+            }
+
+            .navbar ul {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .navbar a {
+                font-size: 15px;
+            }
+
+            .contact-section {
+                margin: 40px auto;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                width: 100%;
+            }
+        }
+
+footer {
+    margin-top: 70px;
+    padding: 25px 20px;
+
+    text-align: center;
+
+    background: #fff8f7;
+
+    border-top: 1px solid #d8b4a0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer span {
+    color: brown;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="aboutme.html">About me</a></li>
+
+            <li><a href="projects.html">Projects</a></li>
+
+            <li><a href="contactme.html">Contact me</a></li>
+        </ul>
+
+    </nav>
+    <main>
+
+        <section class="contact-section">
+
+            <div class="section-title">
+                CONTACT ME
+            </div>
+
+            <div class="contact-grid">
+
+                <div class="contact-box">
+
+                    <div class="contact-left">
+
+                        <div class="icon">
+                            ✉️
+                        </div>
+
+                        <div class="contact-info">
+
+                            <div class="contact-name">
+                                Email
+                            </div>
+
+                            <div class="tagline">
+                                birunthar007@gmail.com
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <a
+                        class="contact-link"
+                        href="mailto:birunthar007@gmail.com">
+
+                        Write
+
+                    </a>
+
+                </div>
+                <div class="contact-box">
+
+                    <div class="contact-left">
+
+                        <div class="icon">
+                            🔗
+                        </div>
+
+                        <div class="contact-info">
+
+                            <div class="contact-name">
+                                LinkedIn
+                            </div>
+
+                            <div class="tagline">
+                                /in/biruntha-r
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <a
+                        class="contact-link"
+                        target="_blank"
+                        href="https://www.linkedin.com/in/biruntha-r/">
+
+                        Visit
+                    </a>
+                </div>
+                <div class="contact-box">
+                    <div class="contact-left">
+                        <div class="icon">
+                            💻
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-name">
+                                GitHub
+                            </div>
+                            <div class="tagline">
+                                /birunthar007
+                            </div>
+                        </div>
+                    </div>
+                    <a
+                        class="contact-link"
+                        target="_blank"
+                        href="https://github.com/birunthar007">
+
+                        Open
+
+                    </a>
+
+                </div>
+                <div class="contact-box">
+
+                    <div class="contact-left">
+
+                        <div class="icon">
+                            💬
+                        </div>
+
+                        <div class="contact-info">
+
+                            <div class="contact-name">
+                                WhatsApp
+                            </div>
+
+                            <div class="tagline">
+                                +91 93618 12305
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <a
+                        class="contact-link"
+                        target="_blank"
+                        href="https://wa.me/9361812305">
+
+                        Message
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+<footer>
+
+        <p>
+            Designed & Built by
+            <span>Biruntha R</span>
+        </p>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projects</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: #ffffff;
+            color: brown;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: #fff8f7;
+            padding: 20px 40px;
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: brown;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f4a460;
+        }
+
+        .navbar a.active {
+            color: #f4a460;
+        }
+
+        .project-section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: brown;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 25px;
+            border: 1px solid #d8b4a0;
+            background: #ffffff;
+            color: brown;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #fff3ec;
+            border-color: #ce4222;
+            color: #ce4222;
+        }
+
+        .filter-btn.active {
+            background: #ce4222;
+            color: white;
+            border-color: #ce4222;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-card {
+            width: 100%;
+            background: #ffffff;
+            border: 2px solid #d8b4a0;
+            border-radius: 18px;
+            padding: 30px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+
+            border-radius: 14px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 27px;
+
+            background: linear-gradient(
+                180deg,
+                #eb5f1e4d,
+                #ce4222ee
+            );
+
+            border: 1px solid #65060155;
+        }
+
+        .project-content {
+            flex: 1;
+        }
+
+        .project-title {
+            margin: 0 0 12px;
+            font-size: 23px;
+            color: brown;
+        }
+
+        .project-description {
+            margin: 0 0 18px;
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .technology-title {
+            margin: 0 0 10px;
+            color: brown;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .technology {
+            padding: 7px 13px;
+            border-radius: 20px;
+
+            background: #fff8f7;
+            border: 1px solid #d8b4a0;
+
+            color: brown;
+            font-size: 12px;
+        }
+
+        .readme-heading {
+            color: brown;
+            font-size: 17px;
+            margin-top: 22px;
+            margin-bottom: 8px;
+        }
+
+        .readme-list {
+            padding-left: 22px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .readme-list li {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 4px;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+
+            background: #fff3ec;
+            border: 1px solid #d8b4a0;
+
+            color: #ce4222;
+            font-size: 12px;
+
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .no-project {
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #777;
+
+            border: 1px solid #d8b4a0;
+
+            border-radius: 18px;
+
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding: 25px;
+
+            text-align: center;
+
+            background: #fff8f7;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+        footer span {
+            color: brown;
+            font-weight: bold;
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .navbar ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar a {
+                font-size: 14px;
+            }
+
+            .project-section {
+                width: 95%;
+                margin: 40px auto;
+                padding: 10px;
+            }
+
+            .project-card {
+                padding: 22px;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .project-card {
+                flex-direction: column;
+            }
+
+            .project-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+
+        <ul>
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="aboutme.html">
+                    About me
+                </a>
+            </li>
+
+            <li>
+                <a href="projects.html" class="active">
+                    Projects
+                </a>
+            </li>
+
+            <li>
+                <a href="contactme.html">
+                    Contact me
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <main>
+
+        <section class="project-section">
+
+
+            <div class="section-title">
+                PROJECTS
+            </div>
+
+
+            <div class="section-subtitle">
+                Explore my projects and technical work
+            </div>
+
+            <!-- Filter Buttons Section -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Projects</button>
+                <a href="image.html" class="filter-btn">Image</a>
+                <a href="video.html" class="filter-btn">Video</a>
+                <button class="filter-btn" data-filter="readme">README</button>
+            </div>
+
+            <div class="project-list">
+
+                
+                <div
+                    class="project-card"
+                    data-category="project">
+
+
+                    <div class="project-icon">
+                        🎯
+                    </div>
+
+
+                    <div class="project-content">
+
+
+                        <h2 class="project-title"> 1. SmartAttendance - Management System    <a href="https://smartattendance-072r.onrender.com" target="_blank" rel="noopener noreferrer">[LIVE DEMO]
+                            </a>
+                        </h2>
+
+
+                        <p class="technology-title">
+                            Technologies:
+                        </p>
+
+
+                        <div class="technologies">
+
+                            <span class="technology">
+                                Python
+                            </span>
+
+                            <span class="technology">
+                                Flask
+                            </span>
+
+                            <span class="technology">
+                                SQLite
+                            </span>
+
+                            <span class="technology">
+                                OpenCV
+                            </span>
+
+                        </div>
+
+
+                        <br>
+
+
+                        <p class="project-description">
+
+                            • Developed a face recognition-based 
+                            attendance management system to automate 
+                            student attendance tracking and reduce 
+                            manual effort.
+
+                        </p>
+
+
+                        <p class="project-description">
+
+                            • Implemented student attendance management
+                            for multiple classes and sections with 
+                            organized attendance records.
+                        </p>
+
+                         <p class="project-description">
+
+                            •Generated downloadable PDF attendance reports 
+                            for efficient monitoring and record management.
+
+                         </p>
+
+
+                    </div>
+
+                </div>
+
+                
+                <div
+                    class="project-card"
+                    data-category="project">
+
+
+                    <div class="project-icon">
+                        🏢
+                    </div>
+
+
+                    <div class="project-content">
+
+
+                        <h2 class="project-title">
+                          2. SmartBillz -Smart Billing & Business Management System <a href="https://smartbillz.onrender.com" target="_blank" rel="noopener noreferrer">[LIVE DEMO]
+                            </a>
+                        </h2>
+
+                        <p class="technology-title">
+                            Technologies:
+                        </p>
+
+
+                        <div class="technologies">
+
+                            <span class="technology">
+                                Python
+                            </span>
+
+                            <span class="technology">
+                                Flask
+                            </span>
+
+                            <span class="technology">
+                                SQLite
+                            </span>
+
+                            <span class="technology">
+                                HTML
+                            </span>
+                             
+                            <span class="technology">
+                                CSS
+                            </span>
+                        </div>
+
+                        <br>
+
+                        <p class="project-description">
+
+                            • Developed a web-based billing and business management system designed for small businesses such as bakeries and juice shops.
+                        </p>
+
+
+                        <p class="project-description">
+
+                           • Implemented billing, inventory management, automatic stock updates, and low-stock alerts to simplify daily business operations.
+
+
+                        <p class="project-description">
+
+                            • Created an interactive dashboard and billing history with persistent database storage to track sales, stock levels, and business activities.
+                        </p>
+
+                        <p class="project-description">
+
+                            • Integrated PDF invoice generation for professional billing and easy record management.
+                    </div>
+
+                </div>
+
+                <!-- 1. SmartAttendance (README Card) -->
+                <div
+                    class="project-card hidden"
+                    data-category="readme">
+
+
+                    <div class="project-icon">
+                        🎯
+                    </div>
+
+
+                    <div class="project-content">
+
+
+                        <h2 class="project-title">
+                            SmartAttendance- README
+                        </h2>
+
+
+                        <span class="project-status">
+                            Project Documentation
+                        </span>
+
+                        <h3 class="readme-heading">
+                            About the Project
+                        </h3>
+
+
+                        <p class="project-description">
+
+                            SmartAttendance is a face recognition-based attendance management system that automates student attendance tracking using a webcam.
+
+                        </p>
+
+                        <h3 class="readme-heading">Project Goal</h3>
+                        <p class="project-description">
+                            To simplify attendance management, reduce manual work, and generate downloadable attendance reports for academic monitoring.
+
+                        <h3 class="readme-heading">Tech Stack</h3>
+                        <ul class="readme-list">
+                            <li><strong>Backend:</strong> Python ,Flask</li>
+                            <li><strong>Computer Vision:</strong> OpenCV </li>
+                            <li><strong>Frontend:</strong> HTML5, CSS3</li>
+                            <li><strong>Database:</strong> SQLite</li>
+                            <li><strong>PDF Generation:</strong> ReportLab</li>
+                        </ul>
+
+                        <div class="technologies">
+                            <a href="README [SmartAttendance].pdf" target="_blank" class="resume-btn view-readme-btn">
+                                <span class="filter-buttons" style="background-color: #000000; color: white; width: 200px; padding: 10px 20px; font-size: 14px; cursor: pointer; border-radius: 5px; margin-bottom: 0;">
+                                    README PDF
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+  
+                <div
+                    class="project-card hidden"
+                    data-category="readme">
+
+
+                    <div class="project-icon">
+                        🏢
+                    </div>
+
+
+                    <div class="project-content">
+
+
+                        <h2 class="project-title">
+                            SmartBillz- README
+                        </h2>
+
+
+                        <span class="project-status">
+                            Completed / v1.0.0
+                        </span>
+
+                        <h3 class="readme-heading">
+                            About the Project
+                        </h3>
+
+
+                        <p class="project-description">
+
+                            SmartBillz is a smart billing and business management application designed for small businesses like bakeries and juice shops.
+                        </p>
+
+
+                        <h3 class="readme-heading">
+                            Project Goal
+                        </h3>
+
+
+                        <p class="project-description">
+
+                            To simplify business operations through automated billing, inventory tracking, stock management, and sales monitoring.
+                        </p>
+
+
+
+                        <h3 class="readme-heading">
+                            Tech Stack
+                        </h3>
+
+
+                        <ul class="readme-list">
+                            <li><strong>Backend:</strong> Python ,Flask</li>
+                            <li><strong>Frontend:</strong> HTML5,CSS3</li>
+                            <li><strong>Database:</strong> SQLite</li>
+                            <li><strong>PDF Generation:</strong> ReportLab</li>
+                            <li><strong>Image Processing:</strong> Pillow</li>
+                        </ul>
+
+
+                        <div class="technologies">
+                            <a href="README [SmartBillz].pdf" target="_blank" class="resume-btn view-readme-btn">
+                                <span class="filter-buttons" style="background-color: #000000; color: white; width:200px; padding: 10px 20px; font-size: 14px; cursor: pointer; border-radius: 5px; margin-bottom: 0;">
+                                    README PDF
+                                </span>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ================= NO PROJECT ================= -->
+
+            <div
+                class="no-project"
+                id="noProject">
+
+                No content available in this category.
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            Designed & Built by
+
+            <span>
+                Biruntha R
+            </span>
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const buttons =
+            document.querySelectorAll("button.filter-btn");
+
+        const projects =
+            document.querySelectorAll(".project-card");
+
+        const noProject =
+            document.getElementById("noProject");
+
+
+        function applyFilter(filter) {
+            buttons.forEach(function (btn) {
+                btn.classList.remove("active");
+                if (btn.getAttribute("data-filter") === filter) {
+                    btn.classList.add("active");
+                }
+            });
+
+            let visibleProjects = 0;
+
+            if (filter === "all") {
+                projects.forEach(function (project) {
+                    const category =
+                        project.getAttribute("data-category");
+
+                    if (category === "project") {
+                        project.classList.remove("hidden");
+                        visibleProjects++;
+                    } else {
+                        project.classList.add("hidden");
+                    }
+                });
+            } else {
+                projects.forEach(function (project) {
+                    const category =
+                        project.getAttribute("data-category");
+
+                    if (category === filter) {
+                        project.classList.remove("hidden");
+                        visibleProjects++;
+                    } else {
+                        project.classList.add("hidden");
+                    }
+                });
+            }
+
+            if (visibleProjects === 0) {
+                noProject.style.display = "block";
+            } else {
+                noProject.style.display = "none";
+            }
+        }
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const filter = this.getAttribute("data-filter");
+                applyFilter(filter);
+            });
+        });
+
+        // Auto-switch to README if user navigates via ?filter=readme
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterParam = urlParams.get('filter');
+        if (filterParam === 'readme') {
+            applyFilter('readme');
+        }
+
+    </script>
+
+
+</body>
+
+</html>

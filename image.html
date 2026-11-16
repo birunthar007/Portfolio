@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Images</title>
+    
+    <!-- Font Awesome for Icons & Arrows -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: #ffffff;
+            color: brown;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: #fff8f7;
+            padding: 20px 40px;
+            border-bottom: 1px solid #ead8d0;
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: brown;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            color: #f4a460;
+        }
+
+        .project-section {
+            max-width: 950px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: brown;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 25px;
+            border: 1px solid #d8b4a0;
+            background: #ffffff;
+            color: brown;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #fff3ec;
+            border-color: #ce4222;
+            color: #ce4222;
+        }
+
+        .filter-btn.active {
+            background: #ce4222;
+            color: white;
+            border-color: #ce4222;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-card {
+            width: 100%;
+            background: #ffffff;
+            border: 2px solid #d8b4a0;
+            border-radius: 18px;
+            padding: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 27px;
+            background: linear-gradient(180deg, #eb5f1e4d, #ce4222ee);
+            border: 1px solid #65060155;
+        }
+
+        .project-content {
+            flex: 1;
+            min-width: 0; /* Prevents slider overflow */
+        }
+
+        .project-title {
+            margin: 0 0 8px;
+            font-size: 23px;
+            color: brown;
+        }
+
+        .project-description {
+            margin: 0 0 16px;
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ================= CAROUSEL / SLIDER STYLES ================= */
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .slider-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 5px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .slider-item {
+            flex: 0 0 calc((100% - 30px) / 3); /* Exactly 3 images per view */
+            min-width: calc((100% - 30px) / 3);
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1.5px solid #d8b4a0;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .slider-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+            border-color: #ce4222;
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Slide Buttons */
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(174, 163, 160, 0.9);
+            color: rgb(8, 1, 1);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            transition: 0.3s;
+        }
+
+        .slide-arrow:hover {
+            background: rgb(170, 154, 154);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slide-arrow.prev {
+            left: -18px;
+        }
+
+        .slide-arrow.next {
+            right: -18px;
+        }
+
+        /* ================= MODAL LIGHTBOX PREVIEW ================= */
+        .preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content-wrapper {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #ce4222;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding: 25px;
+            text-align: center;
+            background: #fff8f7;
+            color: #777;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: brown;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .slider-item {
+                flex: 0 0 calc((100% - 15px) / 2); /* 2 items on tablets */
+                min-width: calc((100% - 15px) / 2);
+            }
+            .slide-arrow.prev { left: -10px; }
+            .slide-arrow.next { right: -10px; }
+        }
+
+        @media (max-width: 500px) {
+            .project-card {
+                flex-direction: column;
+            }
+            .slider-item {
+                flex: 0 0 100%; /* 1 item on mobile */
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About me</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="contactme.html">Contact me</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="project-section">
+            <div class="section-title">PROJECT IMAGES</div>
+            <div class="section-subtitle">Visual screenshots and UI previews</div>
+
+            <div class="filter-buttons">
+                <a href="projects.html" class="filter-btn">Projects</a>
+                <a href="image.html" class="filter-btn active">Image</a>
+                <a href="video.html" class="filter-btn">Video</a>
+                <a href="projects.html?filter=readme" class="filter-btn">README</a>
+            </div>
+
+            <div class="project-list">
+
+                <!-- 1. SmartAttendance Card -->
+                <div class="project-card">
+                    <div class="project-icon">🖼️</div>
+                    <div class="project-content">
+                        <h2 class="project-title">1. SmartAttendance</h2>
+                        <p class="project-description">Screenshots showing the live Attendance, admin dashboard, and session reports.</p>
+                        
+                        <!-- Carousel with Arrows -->
+                        <div class="slider-wrapper">
+                            <button class="slide-arrow prev" onclick="scrollSlider('slider-Smart', -1)">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+
+                            <div class="slider-container" id="slider-Smart">
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartAttendance/SA -[login].png" alt="Smart AttendanceLanding Screen & 
+                                    Staff Login View">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartAttendance/SA -[dashboard].png" alt="Admin Dashboard">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartAttendance/SA -[face attendance].png" alt="face Recognition">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartAttendance/SA -[student reg].png" alt="Student List Management">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartAttendance/SA -[weekly report].png" alt="weekly Reports View">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartAttendance/SA - [forget passcode].png" alt="Forget password view">
+                                </div>
+                            </div>
+
+                            <button class="slide-arrow next" onclick="scrollSlider('slider-Smart', 1)">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Smartbillz Card -->
+                <div class="project-card">
+                    <div class="project-icon">🖼️</div>
+                    <div class="project-content">
+                        <h2 class="project-title">2. SmartBillz</h2>
+                        <p class="project-description">Screenshot showing the User login,Shop login,Dashboard,Stock management,Billing,Customers,Expenses,Reports,Analytics,Settings</p>
+                        
+                        <!-- Carousel with Arrows -->
+                        <div class="slider-wrapper">
+                            <button class="slide-arrow prev" onclick="scrollSlider('slider-SmartBillz', -1)">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+
+                            <div class="slider-container" id="slider-SmartBillz">
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[welcome page].png" alt="SmartBillz welcome page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[shop reg].png" alt="Shop registration page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[dashboard].png" alt="Dashboard">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[add item].png" alt="Item add page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[stock management].png" alt="Stock management page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[billing].png" alt="Billing page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[customers].png" alt="Customers page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[expenses].png" alt="Expenses page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB- [reports].png" alt="Reports page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[analytics].png" alt="Analytics page">
+                                </div>
+                                <div class="slider-item" onclick="openPreview(this)">
+                                    <img src="images/SmartBillz/SB -[settings].png" alt="Settings page">
+                                </div>
+                            </div>
+
+                            <button class="slide-arrow next" onclick="scrollSlider('slider-SmartBillz', 1)">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= FULLSCREEN PREVIEW MODAL ================= -->
+    <div class="preview-modal" id="previewModal" onclick="closePreview(event)">
+        <div class="modal-content-wrapper">
+            <span class="close-modal" onclick="closePreviewModal()">&times;</span>
+            <img id="modalImg" class="modal-img" src="" alt="Enlarged Preview">
+        </div>
+    </div>
+
+    <footer>
+        <p>Designed & Built by <span>Biruntha R</span></p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // 1. Slider Scroll Handler (Scrolls by width of 1 item per click)
+        function scrollSlider(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            const itemWidth = slider.querySelector('.slider-item').offsetWidth + 15; // Width + gap
+            slider.scrollBy({
+                left: direction * itemWidth,
+                behavior: 'smooth'
+            });
+        }
+
+        // 2. Lightbox Modal Open Preview
+        function openPreview(item) {
+            const imgSrc = item.querySelector('img').src;
+            const modal = document.getElementById('previewModal');
+            const modalImg = document.getElementById('modalImg');
+            
+            modalImg.src = imgSrc;
+            modal.style.display = 'flex';
+        }
+
+        // 3. Close Lightbox on Background Click
+        function closePreview(event) {
+            if (event.target.id === 'previewModal') {
+                closePreviewModal();
+            }
+        }
+
+        // Close on 'X' Button Click
+        function closePreviewModal() {
+            const modal = document.getElementById('previewModal');
+            modal.style.display = 'none';
+        }
+
+        // Close on Escape Key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePreviewModal();
+            }
+        });
+    </script>
+</body>
+</html>
