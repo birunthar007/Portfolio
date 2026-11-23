@@ -1,11 +1,62 @@
 {
-  "generated_at": null,
+  "generated_at": "2026-11-23T13:54:50.518Z",
   "user": {
     "login": "birunthar007",
     "name": "Biruntha R",
-    "public_repos": 0,
-    "followers": 0,
+    "public_repos": 5,
+    "followers": 1,
     "following": 0
   },
-  "repos": []
+  "repos": [
+    {
+      "id": 1467553987,
+      "name": "Portfolio",
+      "html_url": "https://github.com/birunthar007/Portfolio",
+      "description": null,
+      "language": "HTML",
+      "stargazers_count": 0,
+      "fork": false,
+      "updated_at": "2026-11-23T13:41:07Z"
+    },
+    {
+      "id": 1358974017,
+      "name": "SmartBillz",
+      "html_url": "https://github.com/birunthar007/SmartBillz",
+      "description": null,
+      "language": "Python",
+      "stargazers_count": 0,
+      "fork": false,
+      "updated_at": "2026-09-06T09:53:28Z"
+    },
+    {
+      "id": 1353663546,
+      "name": "SmartAttendance",
+      "html_url": "https://github.com/birunthar007/SmartAttendance",
+      "description": null,
+      "language": "HTML",
+      "stargazers_count": 0,
+      "fork": false,
+      "updated_at": "2026-09-01T15:18:34Z"
+    },
+    {
+      "id": 1179044511,
+      "name": "Biruntha-R",
+      "html_url": "https://github.com/birunthar007/Biruntha-R",
+      "description": null,
+      "language": null,
+      "stargazers_count": 1,
+      "fork": false,
+      "updated_at": "2026-03-30T01:12:11Z"
+    },
+    {
+      "id": 1195437559,
+      "name": "Student-Management-System",
+      "html_url": "https://github.com/birunthar007/Student-Management-System",
+      "description": null,
+      "language": "Python",
+      "stargazers_count": 1,
+      "fork": false,
+      "updated_at": "2026-03-29T18:20:48Z"
+    }
+  ]
 }
