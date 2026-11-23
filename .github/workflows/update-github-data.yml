@@ -1,0 +1,90 @@
+name: Update portfolio GitHub data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-portfolio-github-data
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+
+      - name: Fetch public GitHub profile and repositories
+        env:
+          GH_USER: birunthar007
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const userName = process.env.GH_USER;
+          const headers = {
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+            'User-Agent': 'Biruntha-Portfolio-GitHub-Data-Updater'
+          };
+          async function get(url) {
+            const response = await fetch(url, { headers });
+            if (!response.ok) throw new Error(`GitHub API ${response.status}: ${url}`);
+            return response.json();
+          }
+          (async () => {
+            const user = await get(`https://api.github.com/users/${userName}`);
+            const repos = [];
+            for (let page = 1; page <= 10; page++) {
+              const batch = await get(`https://api.github.com/users/${userName}/repos?type=owner&sort=updated&per_page=100&page=${page}`);
+              if (!Array.isArray(batch)) throw new Error('Unexpected repositories response');
+              repos.push(...batch);
+              if (batch.length < 100) break;
+            }
+            const data = {
+              generated_at: null,
+              user: {
+                login: user.login,
+                name: user.name,
+                public_repos: user.public_repos,
+                followers: user.followers,
+                following: user.following
+              },
+              repos: repos.map(r => ({
+                id: r.id,
+                name: r.name,
+                html_url: r.html_url,
+                description: r.description,
+                language: r.language,
+                stargazers_count: r.stargazers_count,
+                fork: r.fork,
+                updated_at: r.updated_at
+              }))
+            };
+            let previous = null;
+            try { previous = JSON.parse(fs.readFileSync('github-data.json', 'utf8')); } catch (_) {}
+            const comparable = value => JSON.stringify({ user: value.user, repos: value.repos });
+            if (previous && comparable(previous) === comparable(data)) {
+              data.generated_at = previous.generated_at || new Date().toISOString();
+            } else {
+              data.generated_at = new Date().toISOString();
+            }
+            fs.writeFileSync('github-data.json', JSON.stringify(data, null, 2) + '\n');
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
+
+      - name: Commit updated snapshot only when data changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add github-data.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: refresh GitHub profile data"
+            git push
+          else
+            echo "GitHub profile data has not changed."
+          fi
